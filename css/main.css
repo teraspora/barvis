@@ -1,7 +1,12 @@
+body {
+    background-color: #448eff;
+}
+
 main {
     display: grid;
     grid-template-columns: 1fr;
 }
+
 #player {
     width: 512px;
     height: 64px;
@@ -18,6 +23,6 @@ canvas {
     height: 512px;
     background:#010012;
     margin: 32px auto;
-    border: 2px solid black;
+    border: 2px ridge #ffddaa;
     border-radius: 5px;
 }
