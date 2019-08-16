@@ -1,34 +1,35 @@
-document.addEventListener('click', function() {
-    audio_context.resume().then(() => {
-        console.log('Playback resumed successfully');
-    });
-});
+// document.addEventListener('click', function() {
+//     audio_context.resume().then(_ => {
+//         console.log('Playback resumed successfully');
+//     });
+// });
 
 let audio = new Audio();
 audio.src = 'track1.mp3';
 audio.controls = true;
 audio.loop = true;
 audio.autoplay = true;
-let frame = 0;
 const bar_width = 4;
 const bars = 256;
 
+let frame = 0;
 let source, audio_context, analyser, spectrum, bar_height, bar_x;
 let canvases = [0, 1, 2, 3].map(n => document.getElementById(`canvas-${n}`));
 let graphics_contexts = canvases.map(canvas => canvas.getContext('2d'));
 let [w, h] = [canvases[0].width, canvases[0].height];
 
 
-window.addEventListener("load", initPlayer, false);
+window.addEventListener("click", initPlayer, false);
 
 function initPlayer(){
-    document.getElementById('audio_box').appendChild(audio);
+    let audio_box = document.getElementById('audio-box');
+    audio_box.replaceChild(audio, audio_box.childNodes[0]);
     audio_context = new AudioContext();
     analyser = audio_context.createAnalyser(); 
     // Re-route audio playback into the processing graph of the AudioContext
     source = audio_context.createMediaElementSource(audio); 
     source.connect(analyser);
-    analyser.connect(audio_context.destination);
+    source.connect(audio_context.destination);
     paintBars();
 }
 
@@ -43,7 +44,7 @@ function paintBars(){
             bar_x = i * 5;
             let val = spectrum[n * bars + i];
             ctx.fillStyle = `rgb(${val}, ${((frame / 31) + (frame % (i + 173)) * i) % 256}, ${255 - val})`;
-            bar_height = -val * 0.6 * (n + 1);
+            bar_height = -val * 0.6;
             ctx.fillRect(bar_x, h, bar_width, bar_height);
         }
     });

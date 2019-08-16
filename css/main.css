@@ -1,5 +1,6 @@
 body {
     background-color: #448eff;
+    font-family: sans-serif;
 }
 
 main {
@@ -29,6 +30,14 @@ audio {
     background:#010012;
     border: 2px ridge #ffddaa;
     border-radius: 5px;
+}
+
+#audio-box {
+  color:#ffae18;
+  font-size: 2vw;
+  text-align: center;
+  user-select: none;
+  cursor: pointer;
 }
 
 #canvas-0, #canvas-1 {
