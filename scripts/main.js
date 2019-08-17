@@ -43,7 +43,7 @@ function paintBars(){
         for (let i = 0; i < bars; i++) {
             bar_x = i * 5;
             let val = spectrum[n * bars + i];
-            ctx.fillStyle = `rgb(${val}, ${((frame / 31) + (frame % (i + 173)) * i) % 256}, ${255 - val})`;
+            ctx.fillStyle = `rgb(${val}, ${((frame / 31) + (frame % (i + 173)) * i) % 0x100}, ${0xff - val})`;
             bar_height = -val * 0.6;
             ctx.fillRect(bar_x, h, bar_width, bar_height);
         }
