@@ -1,8 +1,7 @@
-// document.addEventListener('click', function() {
-//     audio_context.resume().then(_ => {
-//         console.log('Playback resumed successfully');
-//     });
-// });
+// Bar Chart visualisation of audio stream
+// Author:      John Lynch
+// Date:        August 2019
+// Based on MDN docs at https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Visualizations_with_Web_Audio_API
 
 let audio = new Audio();
 audio.src = 'track1.mp3';
@@ -50,10 +49,3 @@ function paintBars(){
     });
 }
 
-// function rgb2Hex(rgbColour) {
-//     let rgb = rgbColour.slice(4,-1).split(`,`);
-//     return `#`
-//       + (`0` + Number(rgb[0]).toString(16)).slice(-2)
-//       + (`0` + Number(rgb[1]).toString(16)).slice(-2)
-//       + (`0` + Number(rgb[2]).toString(16)).slice(-2);
-// }
