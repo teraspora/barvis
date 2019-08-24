@@ -4,12 +4,13 @@
 // Based on MDN docs at https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Visualizations_with_Web_Audio_API
 
 let audio = new Audio();
+// audio.src = 'obc.mp3';
 audio.src = 'track1.mp3';
 audio.controls = true;
-audio.loop = true;
+audio.loop = false;
 audio.autoplay = true;
 const bar_width = 4;
-const bars = 256;
+const bars = 128;
 
 let frame = 0;
 let source, audio_context, analyser, spectrum, bar_height, bar_x;
@@ -17,11 +18,11 @@ let canvases = [0, 1, 2, 3].map(n => document.getElementById(`canvas-${n}`));
 let graphics_contexts = canvases.map(canvas => canvas.getContext('2d'));
 let [w, h] = [canvases[0].width, canvases[0].height];
 
-
+const audio_box = document.getElementById('audio-box');
+audio_box.focus();
 window.addEventListener("click", initPlayer, false);
 
 function initPlayer(){
-    let audio_box = document.getElementById('audio-box');
     audio_box.replaceChild(audio, audio_box.childNodes[0]);
     audio_context = new AudioContext();
     analyser = audio_context.createAnalyser(); 
@@ -40,7 +41,7 @@ function paintBars(){
     graphics_contexts.forEach((ctx, n) => {
         ctx.clearRect(0, 0, w, h);
         for (let i = 0; i < bars; i++) {
-            bar_x = i * 5;
+            bar_x = i * 4;
             let val = spectrum[n * bars + i];
             ctx.fillStyle = `rgb(${val}, ${((frame / 31) + (frame % (i + 173)) * i) % 0x100}, ${0xff - val})`;
             bar_height = -val * 0.6;

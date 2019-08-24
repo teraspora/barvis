@@ -19,6 +19,8 @@ main {
     grid-row: 1/2;
     grid-column: 1/-1;
     justify-self: center;
+    border: 2px ridge #ffa8aa;
+    border-radius: 5px;
 }
 audio {
     width: 512px;
